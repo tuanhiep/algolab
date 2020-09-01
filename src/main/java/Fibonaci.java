@@ -2,9 +2,33 @@ public class Fibonaci {
 
 
     public static void main(String[] args) {
+        int n = 20;
+        // Test for the algorithm fibo1
+        System.out.println("I. Test fibo1 for exponential algorithm ");
+        String recoredTime1 = "";
+        String number = "";
+        for (int i = 0; i <= n; i++) {
+            long startTime = System.nanoTime();
+            fibo1(i);
+            long endTime = System.nanoTime();
+            number += i + ",";
+            recoredTime1 += (endTime - startTime) + ",";
+        }
+        System.out.println("For number is: " + number);
+        System.out.println("Recorded time is: " + recoredTime1);
+        // Test for the algorithm fibo2
+        System.out.println("II. Test fibo1 for exponential algorithm ");
+        String recoredTime2 = "";
+        for (int i = 0; i <= n; i++) {
+            long startTime = System.nanoTime();
+            fibo1(i);
+            long endTime = System.nanoTime();
+            recoredTime2 += (endTime - startTime) + ",";
+        }
+        System.out.println("For number is: " + number);
+        System.out.println("Recorded time is: " + recoredTime2);
 
-        System.out.println(fibo1(2));
-        System.out.println(fibo2(3));
+
     }
 
     /**
@@ -13,7 +37,7 @@ public class Fibonaci {
      * @param n
      * @return Fibonaci number
      */
-    private static int fibo1(int n) {
+    protected static int fibo1(int n) {
         if (n == 0) {
             return 0;
         }
@@ -30,7 +54,7 @@ public class Fibonaci {
      * @param n
      * @return Fibonaci number
      */
-    private static int fibo2(int n) {
+    protected static int fibo2(int n) {
         if (n == 0) {
             return 0;
         }
