@@ -2,7 +2,7 @@ public class Fibonaci {
 
 
     public static void main(String[] args) {
-        int n = 20;
+        int n = 15;
         // Test for the algorithm fibo1
         System.out.println("I. Test fibo1 for exponential algorithm ");
         String recoredTime1 = "";
@@ -21,7 +21,7 @@ public class Fibonaci {
         String recoredTime2 = "";
         for (int i = 0; i <= n; i++) {
             long startTime = System.nanoTime();
-            fibo1(i);
+            fibo2(i);
             long endTime = System.nanoTime();
             recoredTime2 += (endTime - startTime) + ",";
         }
