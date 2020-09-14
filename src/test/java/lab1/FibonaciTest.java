@@ -1,3 +1,5 @@
+package lab1;
+
 import lab1.Fibonaci;
 import org.junit.Test;
 

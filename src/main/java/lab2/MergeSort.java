@@ -7,7 +7,7 @@ public class MergeSort {
      * @param array
      * @return sorted array
      */
-    public int[] mergeSort(int[] array) {
+    public static int[] mergeSort(int[] array) {
         int size = array.length;
         // finished condition
         if (size == 1) return array;
@@ -25,7 +25,7 @@ public class MergeSort {
 
     }
 
-    protected int[] mergeArray(int[] firstPart, int[] secondPart) {
+    protected static int[] mergeArray(int[] firstPart, int[] secondPart) {
         int[] result = new int[firstPart.length + secondPart.length];
         int i = 0;
         int j = 0;
