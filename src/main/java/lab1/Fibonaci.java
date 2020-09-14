@@ -1,8 +1,10 @@
+package lab1;
+
 public class Fibonaci {
 
 
     public static void main(String[] args) {
-        int n = 15;
+        int n = 30;
         // Test for the algorithm fibo1
         System.out.println("I. Test fibo1 for exponential algorithm ");
         String recoredTime1 = "";
