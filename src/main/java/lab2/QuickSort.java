@@ -1,5 +1,7 @@
 package lab2;
 
+import java.util.Random;
+
 public class QuickSort {
     /**
      * Do quicksort for array elements in range: [low,high]
@@ -12,7 +14,7 @@ public class QuickSort {
     public static int[] quickSort(int[] array, int low, int high) throws Exception {
 
         if (low < high) {
-            int pivotIndex = partitionRightmostPivot(array, low, high);
+            int pivotIndex = partitionLeftmostPivot(array, low, high);
             quickSort(array, low, pivotIndex - 1);
             quickSort(array, pivotIndex + 1, high);
             return array;
@@ -23,6 +25,7 @@ public class QuickSort {
 
 
     /**
+     * partition method for quicksort with pivot is the leftmost element
      * @param array
      * @param low
      * @param high
@@ -54,28 +57,45 @@ public class QuickSort {
 
     }
 
-
-    static int partitionRightmostPivot(int arr[], int low, int high) {
-        int pivot = arr[high];
+    /**
+     * partition method for quicksort with pivot is the rightmost element
+     * @param array
+     * @param low
+     * @param high
+     * @return
+     */
+    private static int partitionRightmostPivot(int[] array, int low, int high) {
+        int pivot = array[high];
         int i = (low - 1); // index of smaller element
         for (int j = low; j <= high - 1; j++) {
             // If current element is smaller than or
             // equal to pivot
-            if (arr[j] <= pivot) {
+            if (array[j] <= pivot) {
                 i++;
 
-                // swap arr[i] and arr[j]
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
+                // swap array[i] and array[j]
+                int temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
             }
         }
 
-        // swap arr[i+1] and arr[high] (or pivot)
-        int temp = arr[i + 1];
-        arr[i + 1] = arr[high];
-        arr[high] = temp;
+        // swap array[i+1] and array[high] (or pivot)
+        int temp = array[i + 1];
+        array[i + 1] = array[high];
+        array[high] = temp;
 
         return i + 1;
+    }
+
+    private static int partitionRandomPivot(int[] array, int low, int high) {
+        Random rand = new Random();
+        int pivotIndex=rand.nextInt((high - low) + 1) + low;
+        int temp = array[pivotIndex];
+        array[pivotIndex] = array[low];
+        array[low] = temp;
+        return partitionLeftmostPivot(array, low, high);
+
+
     }
 }
