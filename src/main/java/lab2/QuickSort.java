@@ -88,6 +88,13 @@ public class QuickSort {
         return i + 1;
     }
 
+    /**
+     * partition method for quicksort with pivot is a random element
+     * @param array
+     * @param low
+     * @param high
+     * @return
+     */
     private static int partitionRandomPivot(int[] array, int low, int high) {
         Random rand = new Random();
         int pivotIndex=rand.nextInt((high - low) + 1) + low;

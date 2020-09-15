@@ -25,6 +25,12 @@ public class MergeSort {
 
     }
 
+    /**
+     * To merge 2 arrays in order
+     * @param firstPart
+     * @param secondPart
+     * @return
+     */
     protected static int[] mergeArray(int[] firstPart, int[] secondPart) {
         int[] result = new int[firstPart.length + secondPart.length];
         int i = 0;
