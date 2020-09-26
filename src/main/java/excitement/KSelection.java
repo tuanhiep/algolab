@@ -59,7 +59,7 @@ public class KSelection {
 
     /**
      * Find K-largest element in the searching range of union of 2 list
-     *
+     * Time complexity O(logM+logN)
      * @param k
      * @param list1
      * @param list2
