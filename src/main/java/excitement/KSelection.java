@@ -7,14 +7,54 @@ import java.util.List;
 public class KSelection {
 
     public static void main(String[] args) {
-//      List<Integer> list1 = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4));
-//      List<Integer> list2 = new ArrayList<Integer>(Arrays.asList(5, 6, 7));
-        List<Integer> list2 = new ArrayList<Integer>(Arrays.asList(4));
-        List<Integer> list1 = new ArrayList<Integer>(Arrays.asList(2, 6, 7));
+
+        System.out.println("TEST CASE 1");
+        List<Integer> list1 = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4));
+        List<Integer> list2 = new ArrayList<Integer>(Arrays.asList(5, 6, 7));
+        printList(list1, 1);
+        printList(list2, 2);
         for (int k = 1; k <= list1.size() + list2.size(); k++) {
             int result = findLargestK(k, list1, list2, 0, list1.size() - 1, 0, list2.size() - 1);
             System.out.println("The " + k + "-largest element is: " + result);
         }
+
+        System.out.println("TEST CASE 2");
+        list1 = new ArrayList<Integer>(Arrays.asList(5, 6, 7));
+        list2 = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4));
+        printList(list1, 1);
+        printList(list2, 2);
+        for (int k = 1; k <= list1.size() + list2.size(); k++) {
+            int result = findLargestK(k, list1, list2, 0, list1.size() - 1, 0, list2.size() - 1);
+            System.out.println("The " + k + "-largest element is: " + result);
+        }
+        // When list 1 contains only 1 element
+        System.out.println("TEST EDGE CASE 1");
+        list1 = new ArrayList<Integer>(Arrays.asList(4));
+        list2 = new ArrayList<Integer>(Arrays.asList(2, 6, 7));
+        printList(list1, 1);
+        printList(list2, 2);
+        for (int k = 1; k <= list1.size() + list2.size(); k++) {
+            int result = findLargestK(k, list1, list2, 0, list1.size() - 1, 0, list2.size() - 1);
+            System.out.println("The " + k + "-largest element is: " + result);
+        }
+        // When list 2 contains only 1 element
+        System.out.println("TEST EDGE CASE 2");
+        list1 = new ArrayList<Integer>(Arrays.asList(1, 2, 7, 8));
+        list2 = new ArrayList<Integer>(Arrays.asList(5));
+        printList(list1, 1);
+        printList(list2, 2);
+        for (int k = 1; k <= list1.size() + list2.size(); k++) {
+            int result = findLargestK(k, list1, list2, 0, list1.size() - 1, 0, list2.size() - 1);
+            System.out.println("The " + k + "-largest element is: " + result);
+        }
+    }
+
+    private static void printList(List<Integer> list1, int index) {
+        System.out.print("List " + index + " : ");
+        for (int i : list1) {
+            System.out.print(i + ", ");
+        }
+        System.out.println("");
     }
 
     /**
