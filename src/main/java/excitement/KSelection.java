@@ -7,13 +7,10 @@ import java.util.List;
 public class KSelection {
 
     public static void main(String[] args) {
-//        List<Integer> list1 = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4));
-//        List<Integer> list2 = new ArrayList<Integer>(Arrays.asList(5, 6, 7));
+//      List<Integer> list1 = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4));
+//      List<Integer> list2 = new ArrayList<Integer>(Arrays.asList(5, 6, 7));
         List<Integer> list2 = new ArrayList<Integer>(Arrays.asList(4));
         List<Integer> list1 = new ArrayList<Integer>(Arrays.asList(2, 6, 7));
-        int h = 4;
-        int test = findLargestK(h, list1, list2, 0, list1.size() - 1, 0, list2.size() - 1);
-        System.out.println("The " + h + "-largest element is: " + test + "\n  ********");
         for (int k = 1; k <= list1.size() + list2.size(); k++) {
             int result = findLargestK(k, list1, list2, 0, list1.size() - 1, 0, list2.size() - 1);
             System.out.println("The " + k + "-largest element is: " + result);
@@ -55,7 +52,6 @@ public class KSelection {
                     // certainly the right side of list 2 is out of searching range
                     return findLargestK(k - num2, list1, list2, start1, end1, start2, mid2 - 1);
                 } else {
-                    // the k-largest element of 2 list is now in the left side of list 2 at k-1 position from the right
                     return list1.get(mid1) < list2.get(end2 - (k - 1) + 1) ? list1.get(mid1) : list2.get(end2 - (k - 1) + 1);
                 }
             } else {
@@ -68,48 +64,34 @@ public class KSelection {
 
             if (num1 + num2 <= k) {
                 if (list2.get(mid2) < list1.get(mid1)) {
-                    // certainly the right side of list 2 is out of searching range
+                    // certainly the right side of list 1 is out of searching range
                     return findLargestK(k - num1, list1, list2, start1, mid1 - 1, start2, end2);
                 } else {
-                    // the k-largest element of 2 list is now in the left side of list 2 at k-1 position from the right
                     return list2.get(mid2) < list1.get(end1 - (k - 1) + 1) ? list2.get(mid2) : list1.get(end1 - (k - 1) + 1);
                 }
             } else {
-                // certainly the left side of list 2 is out of searching range
+                // certainly the left side of list 1 is out of searching range
                 return findLargestK(k, list1, list2, mid1, end1, start2, end2);
             }
 
         }
 
-        // if the total number of elements in the right side of 2 lists is smaller than K, we need to extend
-        // the range to search by moving the pivot index to the left
         if (num1 + num2 <= k) {
-            // in this case, certainly the element in the right side of list 1 belong to the set of elements which
-            // are greater then k-largest, therefore we remove these elements from the searching range, the number k
-            // is reduced
+            // We remove the right side of list 1 because they belong to the set of elements which
+            // are greater then k-largest, the number k is reduced
             if (list1.get(mid1) > list2.get(mid2)) {
-                // the new end of list 1 is mid1 -1 because we remove these elements in the right side of list 1
-                // from the searching range
+                // the new end of list 1 is mid1 -1 because we remove the right side of list 1
                 return findLargestK(k - num1, list1, list2, start1, mid1 - 1, start2, end2);
             } else {
-                // the new end of list 2 is mid2 -1 because we remove these elements in the right side of list 2
-                // from the searching range
+                // the new end of list 2 is mid2 -1 because we remove  the right side of list 2
                 return findLargestK(k - num2, list1, list2, start1, end1, start2, mid2 - 1);
-
             }
-        }
-        // if the total number of elements in the right side of 2 lists is greater than K, we need to reduce
-        // the searching range  by moving the pivot index to the right
-        else {
-            // in this case, certainly the element in the left side of list 2 don't belong to the set of elements which
-            // are greater then k-largest, therefore we remove these elements from the searching range, the number k remains
+        } else {
             if (list1.get(mid1) > list2.get(mid2)) {
-                // the new start of list 2 is mid2 because we remove these elements in the left side of list 2
-                // from the searching range
+                // the new start of list 2 is mid2 because we remove  the left side of list 2
                 return findLargestK(k, list1, list2, start1, end1, mid2, end2);
             } else {
-                // the new start of list 1 is mid1 because we remove these elements in the left side of list 2
-                // from the searching range
+                // the new start of list 1 is mid1 because we remove the left side of list 1
                 return findLargestK(k, list1, list2, mid1, end1, start2, end2);
             }
         }
