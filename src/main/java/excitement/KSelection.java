@@ -6,6 +6,10 @@ import java.util.List;
 
 public class KSelection {
 
+    /**
+     *  Experiment for the algorithm of selecting k-largest element from 2 given sorted list
+     * @param args
+     */
     public static void main(String[] args) {
 
         System.out.println("TEST CASE 1");
@@ -78,7 +82,7 @@ public class KSelection {
         int mid1 = (end1 + start1 + 1) / 2;
         // find the middle element index for list 2
         int mid2 = (end2 + start2 + 1) / 2;
-        // find the number of element from middle to the end of each list
+        // find the number of elements from middle to the end of each list
         int num1 = end1 - mid1 + 1;
         int num2 = end2 - mid2 + 1;
 
