@@ -33,7 +33,7 @@ public class PouringWater {
         // stopping rule
         Vertex source = new Vertex(null, start10, start7, start4);
         // Use DFS
-        Set<Vertex> reached = new HashSet<Vertex>();
+        Set<Vertex> visited = new HashSet<Vertex>();
         List<Vertex> stack = new ArrayList<Vertex>();
         stack.add(source);
         while (!stack.isEmpty()) {
@@ -45,8 +45,8 @@ public class PouringWater {
                 return;
             }
             for (Vertex s : node.getAdjacency()) {
-                if (!reached.contains(s)) {
-                    reached.add(s);
+                if (!visited.contains(s)) {
+                    visited.add(s);
                     stack.add(s);
                 }
             }
