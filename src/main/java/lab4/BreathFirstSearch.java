@@ -28,7 +28,16 @@ public class BreathFirstSearch {
         graph.addNode(3);
         graph.setEdge(1, 2);
         graph.setEdge(2, 3);
-        System.out.println("\nShortest Path using BFS: ");
+        System.out.println("\nCase 1: Shortest Path using BFS: ");
+        shortestPathBFS(1, 3, graph);
+
+        graph = new Graph();
+        graph.addNode(1);
+        graph.addNode(2);
+        graph.addNode(3);
+        graph.setEdge(1, 2);
+        graph.setEdge(1, 3);
+        System.out.println("\nCase 2: Shortest Path using BFS: ");
         shortestPathBFS(1, 3, graph);
 
     }
