@@ -95,6 +95,7 @@ public class BreathFirstSearch {
                 }
             }
         }
+        System.out.println("The path doesn't exist");
         return false;
     }
 
