@@ -1,12 +1,16 @@
 package lab4;
 
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 
 public class BreathFirstSearch {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
 //      run BFS
         Graph graph = new Graph();
@@ -27,8 +31,8 @@ public class BreathFirstSearch {
         graph.addNode(2);
         graph.addNode(3);
         graph.setEdge(1, 2);
-        graph.setEdge(2, 3);
-        System.out.println("\nCase 1: Shortest Path using BFS: ");
+        graph.setEdge(1, 3);
+        System.out.println("\nCase 1: Test Shortest Path using BFS: ");
         shortestPathBFS(1, 3, graph);
 
         graph = new Graph();
@@ -36,10 +40,32 @@ public class BreathFirstSearch {
         graph.addNode(2);
         graph.addNode(3);
         graph.setEdge(1, 2);
-        graph.setEdge(1, 3);
-        System.out.println("\nCase 2: Shortest Path using BFS: ");
+        graph.setEdge(2, 3);
+        System.out.println("\nCase 2: Test Shortest Path using BFS: ");
         shortestPathBFS(1, 3, graph);
 
+//      shortest Path using BFS, graph configuration is loaded from file graph.conf, line 1 contains number of vertices
+//      and edges. From line 2, they are the edges in the form: source vertex --> destination vertex
+//      we can easily change the graph.conf to test
+        graph = loadConfig("graph.conf");
+        System.out.println("\nCase 3: Graph is loaded from graph.conf file. Test Shortest Path using BFS: ");
+        shortestPathBFS(1, 3, graph);
+
+    }
+
+    private static Graph loadConfig(String location) throws IOException {
+        Graph graph = new Graph();
+        List lines = Files.readAllLines(Paths.get("src/main/java/lab4/graph.conf"));
+
+        for (int i = 1; i < lines.size(); i++) {
+            String[] nodeIds = ((String) lines.get(i)).split("\\s+");
+            int ida = Integer.parseInt(nodeIds[0]);
+            int idb = Integer.parseInt(nodeIds[1]);
+            graph.addNode(ida);
+            graph.addNode(idb);
+            graph.setEdge(ida, idb);
+        }
+        return graph;
     }
 
     /**
@@ -113,6 +139,7 @@ public class BreathFirstSearch {
             node = node.getPrev();
         }
         stack.add(sourceId);
+        System.out.println("Shortest distance is " + (stack.size() - 1));
         while (!stack.isEmpty()) {
             int top = stack.remove(stack.size() - 1);
             if (stack.size() > 0) {

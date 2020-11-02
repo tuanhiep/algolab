@@ -25,6 +25,7 @@ public class Graph {
     }
 
     public void addNode(int id) {
+        if (this.getNode(id) != null) return;
         Node node = new Node(id);
         this.nodeLookUp.put(id, node);
     }
