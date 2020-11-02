@@ -26,6 +26,8 @@ public class BreathFirstSearch {
         runBFS(graph.getInitNodeID(), graph);
 
 //      shortest Path using  BFS
+
+//      Test case 1
         graph = new Graph();
         graph.addNode(1);
         graph.addNode(2);
@@ -35,6 +37,7 @@ public class BreathFirstSearch {
         System.out.println("\nCase 1: Test Shortest Path using BFS: ");
         shortestPathBFS(1, 3, graph);
 
+//      Test case 2
         graph = new Graph();
         graph.addNode(1);
         graph.addNode(2);
@@ -44,6 +47,7 @@ public class BreathFirstSearch {
         System.out.println("\nCase 2: Test Shortest Path using BFS: ");
         shortestPathBFS(1, 3, graph);
 
+//      Test case 3
 //      shortest Path using BFS, graph configuration is loaded from file graph.conf, line 1 contains number of vertices
 //      and edges. From line 2, they are the edges in the form: source vertex --> destination vertex
 //      we can easily change the graph.conf to test
@@ -53,6 +57,13 @@ public class BreathFirstSearch {
 
     }
 
+    /**
+     * Method to load configuration for graph from the external file graph.conf
+     *
+     * @param location
+     * @return graph object
+     * @throws IOException
+     */
     private static Graph loadConfig(String location) throws IOException {
         Graph graph = new Graph();
         List lines = Files.readAllLines(Paths.get("src/main/java/lab4/graph.conf"));
