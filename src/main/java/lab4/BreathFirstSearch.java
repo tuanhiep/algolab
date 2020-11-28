@@ -13,6 +13,11 @@ public class BreathFirstSearch {
     public static void main(String[] args) throws IOException {
 
 //      run BFS
+        System.out.print("* Run BFS");
+//      Test case
+//      Input:
+//          4( Vertices) 3(Edges)
+//          0 1 0 3 3 2
         Graph graph = new Graph();
         graph.addNode(0);
         graph.addNode(1);
@@ -22,43 +27,93 @@ public class BreathFirstSearch {
         graph.setEdge(0, 3);
         graph.setEdge(3, 2);
         graph.setInitNode(0);
-        System.out.println("Run BFS: ");
+        System.out.println("\nCase 1: ");
+        runBFS(graph.getInitNodeID(), graph);
+
+//      Test case 2
+//      Input:
+//          6(Vertices) 6(Edges)
+//          0 2 0 1 1 3 3 4 4 6 4 5
+        graph = new Graph();
+        graph.addNode(0);
+        graph.addNode(1);
+        graph.addNode(2);
+        graph.addNode(3);
+        graph.addNode(4);
+        graph.addNode(5);
+        graph.addNode(6);
+        graph.setEdge(0, 2);
+        graph.setEdge(0, 1);
+        graph.setEdge(1, 3);
+        graph.setEdge(3, 4);
+        graph.setEdge(4, 6);
+        graph.setEdge(4, 5);
+        graph.setInitNode(0);
+        System.out.println("\nCase 2: ");
         runBFS(graph.getInitNodeID(), graph);
 
 //      shortest Path using  BFS
-
+        System.out.print("\n* Test Shortest Path using BFS:");
 //      Test case 1
+//      Input
+//        3(vertices) 2(edges)
+//        1 2
+//        1 3
         graph = new Graph();
         graph.addNode(1);
         graph.addNode(2);
         graph.addNode(3);
         graph.setEdge(1, 2);
         graph.setEdge(1, 3);
-        System.out.println("\nCase 1: Test Shortest Path using BFS: ");
+        System.out.println("\nCase 1: ");
         shortestPathBFS(1, 3, graph);
 
 //      Test case 2
+//      Input
+//        3(vertices) 2(edges)
+//        1 2
+//        2 3
         graph = new Graph();
         graph.addNode(1);
         graph.addNode(2);
         graph.addNode(3);
         graph.setEdge(1, 2);
         graph.setEdge(2, 3);
-        System.out.println("\nCase 2: Test Shortest Path using BFS: ");
+        System.out.println("\nCase 2:");
         shortestPathBFS(1, 3, graph);
 
 //      Test case 3
-//      shortest Path using BFS, graph configuration is loaded from file graph.conf, line 1 contains number of vertices
+//      shortest Path using BFS, graph configuration is loaded from file graph1.conf, line 1 contains number of vertices
 //      and edges. From line 2, they are the edges in the form: source vertex --> destination vertex
-//      we can easily change the graph.conf to test
-        graph = loadConfig("graph.conf");
-        System.out.println("\nCase 3: Graph is loaded from graph.conf file. Test Shortest Path using BFS: ");
+//      we can easily change the graph1.conf to test
+//      Input
+//        3(vertices) 2(edges)
+//        1 2
+//        2 3
+        graph = loadConfig("graph1.conf");
+        System.out.println("\nCase 3: Graph is loaded from graph1.conf file.");
         shortestPathBFS(1, 3, graph);
+
+//      Test case 4
+//      shortest Path using BFS, graph configuration is loaded from file graph1.conf, line 1 contains number of vertices
+//      and edges. From line 2, they are the edges in the form: source vertex --> destination vertex
+//      we can easily change the graph1.conf to test
+//      Input
+//        6(vertices) 6(edges)
+//            0 1
+//            1 2
+//            2 3
+//            2 5
+//            3 4
+//            4 5
+        graph = loadConfig("graph2.conf");
+        System.out.println("\nCase 4: Graph is loaded from graph2.conf file.");
+        shortestPathBFS(0, 5, graph);
 
     }
 
     /**
-     * Method to load configuration for graph from the external file graph.conf
+     * Method to load configuration for graph from the external file graph1.conf
      *
      * @param location
      * @return graph object
@@ -66,7 +121,7 @@ public class BreathFirstSearch {
      */
     private static Graph loadConfig(String location) throws IOException {
         Graph graph = new Graph();
-        List lines = Files.readAllLines(Paths.get("src/main/java/lab4/graph.conf"));
+        List lines = Files.readAllLines(Paths.get("src/main/java/lab4/"+location));
 
         for (int i = 1; i < lines.size(); i++) {
             String[] nodeIds = ((String) lines.get(i)).split("\\s+");
