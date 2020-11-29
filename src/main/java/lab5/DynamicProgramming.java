@@ -8,22 +8,21 @@ public class DynamicProgramming {
         int[] w = new int[]{4, 5, 7};
         int[] v = new int[]{2, 3, 4};
         int m = 10;
-        int result = knapSackDp(w, v, m);
-        System.out.println("Maximum value: " + result);
+        knapSackDp(w, v, m);
+
         // Example 2
         w = new int[]{2, 3, 3};
         v = new int[]{3, 1, 7};
         m = 6;
-        result = knapSackDp(w, v, m);
-        System.out.println("Maximum value: " + result);
+        knapSackDp(w, v, m);
 
     }
 
     /**
      * Initialize the table knapSack for memoization
      *
-     * @param m
-     * @param size
+     * @param m:    maximum weight of knapSack
+     * @param size: total number of items
      * @return
      */
     private static int[][] initialize(int m, int size) {
@@ -39,19 +38,40 @@ public class DynamicProgramming {
     /**
      * Dynamic programming to find the maximum value with given constraint in weight
      *
-     * @param w
-     * @param v
-     * @param maximum
+     * @param w:      item weights
+     * @param v:      item values
+     * @param maximum value
      * @return
      */
-    public static int knapSackDp(int[] w, int[] v, int maximum) {
+    public static void knapSackDp(int[] w, int[] v, int maximum) {
         // total number of items
         int n = w.length;
         // memoization table for dynamic programming
         int[][] knapSack = initialize(maximum, n);
-        return knapSackDp(w, v, maximum, n, knapSack);
+        int result = knapSackDp(w, v, maximum, n, knapSack);
+        outputSelected(knapSack);
+        System.out.println("Maximum value: " + result);
     }
 
+    /**
+     * Output the selected items for 0/1 knapSack problem
+     *
+     * @param knapSack
+     */
+    private static void outputSelected(int[][] knapSack) {
+
+    }
+
+    /**
+     * Dynamic Programming algorithm to find maximum value and list of  items
+     *
+     * @param w:       item weights
+     * @param v:       item values
+     * @param m:       maximum weight of knapSack
+     * @param n:       total number of items
+     * @param knapSack
+     * @return maximum value
+     */
     private static int knapSackDp(int[] w, int[] v, int m, int n, int[][] knapSack) {
         if (n == 0 || m == 0) {
             return 0;
@@ -61,11 +81,10 @@ public class DynamicProgramming {
         }
         if (w[n - 1] <= m) {
             knapSack[n][m] = Math.max(v[n - 1] + knapSackDp(w, v, m - w[n - 1], n - 1, knapSack), knapSackDp(w, v, m, n - 1, knapSack));
-            return knapSack[n][m];
         } else {
             knapSack[n][m] = knapSackDp(w, v, m, n - 1, knapSack);
-            return knapSack[n][m];
         }
+        return knapSack[n][m];
     }
 }
 
