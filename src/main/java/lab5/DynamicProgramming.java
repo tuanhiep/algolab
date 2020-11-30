@@ -1,6 +1,7 @@
 package lab5;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DynamicProgramming {
@@ -28,6 +29,29 @@ public class DynamicProgramming {
     }
 
     private static void knapSackGa(int[] w, int[] v, int m) {
+        System.out.println("3.Greedy approach:");
+        Item[] items = new Item[w.length];
+
+        for (int i = 0; i < w.length; i++) {
+            items[i] = new Item(w[i], v[i], i);
+        }
+
+        Arrays.sort(items);
+        int maximum = 0;
+        int space = m;
+        for (Item i : items) {
+            if (space >= i.weight) {
+                maximum += i.value;
+                space -= i.weight;
+                System.out.println("Item " + i.index + " : " + ": w = " + w[i.index] + " v = " + v[i.index]);
+            }
+        }
+        if (maximum == 0) {
+            System.out.println("No items was chosen !");
+            return;
+        }
+        System.out.println("were chosen and the total value is " + maximum);
+
 
     }
 
