@@ -8,17 +8,21 @@ public class DynamicProgramming {
 
     public static void main(String[] args) {
         // Example 1
+        System.out.println("* Example 1");
         int[] w = new int[]{4, 5, 7};
         int[] v = new int[]{2, 3, 4};
         int m = 10;
-        knapSackDp(w, v, m);
+        knapSackDp1(w, v, m);
+        knapSackDp2(w, v, m);
         knapSackGa(w, v, m);
 
         // Example 2
+        System.out.println("* Example 2");
         w = new int[]{2, 3, 3};
         v = new int[]{3, 1, 7};
         m = 6;
-        knapSackDp(w, v, m);
+        knapSackDp1(w, v, m);
+        knapSackDp2(w, v, m);
         knapSackGa(w, v, m);
 
     }
@@ -52,17 +56,30 @@ public class DynamicProgramming {
      * @param maximum value
      * @return
      */
-    public static void knapSackDp(int[] w, int[] v, int maximum) {
+    public static void knapSackDp1(int[] w, int[] v, int maximum) {
         // total number of items
         int n = w.length;
         // Solution 1
-        System.out.println("Solution 1:");
+        System.out.println("1.Tabulation - Bottom-up approach:");
         int[][] knapSack1 = initialize(maximum, n);
         int result = knapSackDp1(w, v, maximum, n - 1, knapSack1);
         outputSelected1(w, v, maximum, n - 1, knapSack1, result);
 
+    }
+
+    /**
+     * Dynamic programming to find the maximum value with given constraint in weight
+     *
+     * @param w:      item weights
+     * @param v:      item values
+     * @param maximum value
+     * @return
+     */
+    public static void knapSackDp2(int[] w, int[] v, int maximum) {
+        // total number of items
+        int n = w.length;
         // Solution 2
-        System.out.println("Solution 2:");
+        System.out.println("2.Memoization - Top-down approach:");
         int[][] knapSack2 = initialize(maximum, n);
         List<Integer> selected = new ArrayList<>();
         int result2 = knapSackDp2(w, v, maximum, n - 1, knapSack2, selected);
@@ -110,6 +127,10 @@ public class DynamicProgramming {
      * @param result
      */
     private static void outputSelected1(int[] w, int[] v, int maxWeight, int indexItem, int[][] knapSack, int result) {
+        if (result == 0) {
+            System.out.println("No items was chosen !");
+            return;
+        }
         int remProfit = result;
         int j = maxWeight;
         int i = indexItem;
