@@ -9,7 +9,7 @@ public class Item implements Comparable<Item> {
         this.weight = weight;
         this.value = value;
         this.index = index;
-        this.ratio = value / weight;
+        this.ratio = (double)value / (double) weight;
     }
 
     @Override

@@ -13,6 +13,7 @@ public class DynamicProgramming {
         int[] w = new int[]{4, 5, 7};
         int[] v = new int[]{2, 3, 4};
         int m = 10;
+        printData(w, v, m);
         knapSackDp1(w, v, m);
         knapSackDp2(w, v, m);
         knapSackGa(w, v, m);
@@ -22,9 +23,34 @@ public class DynamicProgramming {
         w = new int[]{2, 3, 3};
         v = new int[]{3, 1, 7};
         m = 6;
+        printData(w, v, m);
         knapSackDp1(w, v, m);
         knapSackDp2(w, v, m);
         knapSackGa(w, v, m);
+
+    }
+
+    /**
+     * print out given data
+     * @param w
+     * @param v
+     * @param m
+     */
+    private static void printData(int[] w, int[] v, int m) {
+        System.out.println("Given:");
+        // print out w[]
+        System.out.print("w={");
+        for (int weight : w) {
+            System.out.print(weight + ",");
+        }
+        System.out.println("}");
+        System.out.print("v={");
+        // print out v[]
+        for (int value : v) {
+            System.out.print(value + ",");
+        }
+        System.out.println("}");
+        System.out.println("Maximum weight limit of knapsack is " + m);
 
     }
 
