@@ -1,6 +1,7 @@
 package lab5;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class DynamicProgramming {
 
@@ -52,7 +53,56 @@ public class DynamicProgramming {
         knapSackDp(w, v, m);
         knapSackGa(w, v, m);
         System.out.println("II> RUNTIME COMPARISON");
+        // number of items
+        int n = 5;
+        String runtimeDp = "";
+        String runtimeGa = "";
+        long startTime, endTime;
+        for (int i = 0; i < 10; i++) {
+            System.out.println("* Test case " + i);
+            w = generateRandomlyW(n);
+            v = generateRandomlyV(n);
+            m = 10 * n;
+            printData(w, v, m);
+            // start measuring runtime for Dp
+            startTime = System.nanoTime();
+            knapSackDp(w, v, m);
+            // end measuring runtime
+            endTime = System.nanoTime();
+            runtimeDp += (endTime - startTime) + ",";
+            // start measuring runtime for Ga
+            startTime = System.nanoTime();
+            knapSackGa(w, v, m);
+            // end measuring runtime
+            endTime = System.nanoTime();
+            runtimeGa += (endTime - startTime) + ",";
 
+        }
+        System.out.println("* RUNTIME RESULT");
+        System.out.println("Runtime (nanoseconds) of Dynamic Programming is: " + runtimeDp);
+        System.out.println("Runtime (nanoseconds) of Greedy Apporach is: " + runtimeGa);
+    }
+
+    private static int[] generateRandomlyV(int n) {
+        int MIN = 10;
+        int MAX = 50;
+        Random rand = new Random();
+        int[] v = new int[n];
+        for (int i = 0; i < n; i++) {
+            v[i] = rand.nextInt((MAX - MIN) + 1) + MIN;
+        }
+        return v;
+    }
+
+    private static int[] generateRandomlyW(int n) {
+        int MIN = 10;
+        int MAX = 30;
+        Random rand = new Random();
+        int[] w = new int[n];
+        for (int i = 0; i < n; i++) {
+            w[i] = rand.nextInt((MAX - MIN) + 1) + MIN;
+        }
+        return w;
     }
 
     /**
