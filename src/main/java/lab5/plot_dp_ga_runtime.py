@@ -7,7 +7,7 @@ plt.clf()
 plt.plot(size, dynamic_programming)
 plt.plot(size, greedy_approach)
 
-plt.xlabel('Test Case')
+plt.xlabel('10 Test Cases for n=5')
 plt.ylabel('Average time (nanoseconds)')
 plt.title('Execution time for knapSack algorithms')
 plt.legend(['dynamic_programming', 'greedy_approach'], loc = 'upper left')
