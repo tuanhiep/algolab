@@ -31,6 +31,22 @@
             <artifactId>maven-compiler-plugin</artifactId>
             <version>3.8.1</version>
         </dependency>
+        <!-- Add these for WebFlux support -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webflux</artifactId>
+            <version>5.3.23</version>
+        </dependency>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+            <version>3.4.26</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.36</version>
+        </dependency>
     </dependencies>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
