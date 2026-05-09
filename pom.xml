@@ -9,14 +9,23 @@
     <version>1.0-SNAPSHOT</version>
     <name>algorithm-lab</name>
     <description>Java lab for algorithm experiments and implementation practice.</description>
+    <properties>
+        <junit.version>4.13.2</junit.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <reactor.version>3.7.12</reactor.version>
+        <spring.version>6.2.12</spring.version>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
                 <configuration>
-                    <source>21</source>
-                    <target>21</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -25,24 +34,18 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.8.1</version>
-        </dependency>
-        <!-- Add these for WebFlux support -->
-        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webflux</artifactId>
-            <version>5.3.23</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-core</artifactId>
-            <version>3.4.26</version>
+            <version>${reactor.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -50,9 +53,4 @@
             <version>1.7.36</version>
         </dependency>
     </dependencies>
-    <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-    </properties>
-
 </project>
