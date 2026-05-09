@@ -4,9 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>algolab</artifactId>
+    <groupId>io.github.tuanhiep</groupId>
+    <artifactId>algorithm-lab</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>algorithm-lab</name>
+    <description>Java lab for algorithm experiments and implementation practice.</description>
     <build>
         <plugins>
             <plugin>
